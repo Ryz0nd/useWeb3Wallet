@@ -1,1 +1,1 @@
-export {}
+export { useEtherWallet } from "./hooks/useEtherWallet";

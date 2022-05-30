@@ -1,10 +1,16 @@
-import type { NextPage } from 'next'
-
+import type { NextPage } from "next";
+import { useEtherWallet } from "use-ether-wallet";
 
 const Home: NextPage = () => {
-  return (
-    <></>
-  )
-}
+  const { connectTo } = useEtherWallet();
 
-export default Home
+  return (
+    <>
+      <button type="button" onClick={() => connectTo("MetaMask")}>
+        MetaMask
+      </button>
+    </>
+  );
+};
+
+export default Home;
