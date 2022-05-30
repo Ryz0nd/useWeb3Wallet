@@ -3,7 +3,7 @@
   "version": "0.0.1",
   "description": "",
   "private": true,
-  "workspaces": [
+  "workspaces":[
     "packages/*",
     "examples/*"
   ],
@@ -18,6 +18,5 @@
   "bugs": {
     "url": "https://github.com/alpha-dao/useEtherWallet/issues"
   },
-  "homepage": "https://github.com/alpha-dao/useEtherWallet#readme",
-  "packageManager": "yarn@3.2.1"
+  "homepage": "https://github.com/alpha-dao/useEtherWallet#readme"
 }
