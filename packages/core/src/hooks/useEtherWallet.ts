@@ -1,16 +1,19 @@
 import { connectToMetamask, connectToWalletConnect } from "../connectors";
-import type { IWalletConnectProviderOptions } from "@walletconnect/types";
+import WalletConnectProvider from "@walletconnect/web3-provider";
 
 export type SupportedWallet =
   | { name: "MetaMask" }
-  | { name: "WalletConnect"; options: IWalletConnectProviderOptions };
+  | {
+      name: "WalletConnect";
+      provider: WalletConnectProvider;
+    };
 
 const connectTo = (wallet: SupportedWallet) => {
   switch (wallet.name) {
     case "MetaMask":
       return connectToMetamask();
     case "WalletConnect":
-      return connectToWalletConnect(wallet.options);
+      return connectToWalletConnect(wallet.provider);
     default:
       return connectToMetamask();
   }
