@@ -6,8 +6,15 @@ const Home: NextPage = () => {
 
   return (
     <>
-      <button type="button" onClick={() => connectTo("MetaMask")}>
+      <button type="button" onClick={() => connectTo({ name: "MetaMask" })}>
         MetaMask
+      </button>
+      <button type="button" onClick={() => connectTo({ name: "WalletConnect", options: {
+        rpc: {
+          56: "https://bsc-dataseed.binance.org/",
+        }
+      } })}>
+        Wallet Connect
       </button>
     </>
   );

@@ -1,32 +1,16 @@
-const connectToMetamask = async () => {
-  if (typeof window !== "undefined") {
-    if (window.ethereum !== undefined) {
-      try {
-        await window.ethereum.request({ method: "eth_requestAccounts" });
-      } catch (error) {
-        throw new Error("User Rejected");
-      }
-    } else {
-      window.open(
-        `https://metamask.app.link/dapp/${window.location.href.replace(
-          `${window.location.protocol}//`,
-          ""
-        )}`,
-        "_blank",
-        "noopener"
-      );
-    }
-  }
-};
+import { connectToMetamask, connectToWalletConnect } from "../connectors";
+import type { IWalletConnectProviderOptions } from "@walletconnect/types";
 
-export type SupportedWallet = "MetaMask" | "WalletConnect";
+export type SupportedWallet =
+  | { name: "MetaMask" }
+  | { name: "WalletConnect"; options: IWalletConnectProviderOptions };
 
 const connectTo = (wallet: SupportedWallet) => {
-  switch (wallet) {
+  switch (wallet.name) {
     case "MetaMask":
       return connectToMetamask();
     case "WalletConnect":
-      return () => {};
+      return connectToWalletConnect(wallet.options);
     default:
       return connectToMetamask();
   }
