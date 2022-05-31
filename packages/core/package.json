@@ -33,5 +33,11 @@
       "import": "./dist/core.es.js",
       "require": "./dist/core.umd.js"
     }
+  },
+  "dependencies": {
+    "zustand": "^3.7.2"
+  },
+  "devDependencies": {
+    "@metamask/providers": "^8.1.1"
   }
 }
