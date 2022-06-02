@@ -1,24 +1,40 @@
-import { connectToMetamask, connectToWalletConnect } from "../connectors";
-import WalletConnectProvider from "@walletconnect/web3-provider";
-
-export type SupportedWallet =
-  | { name: "MetaMask" }
-  | {
-      name: "WalletConnect";
-      provider: WalletConnectProvider;
-    };
-
-const connectTo = (wallet: SupportedWallet) => {
-  switch (wallet.name) {
-    case "MetaMask":
-      return connectToMetamask();
-    case "WalletConnect":
-      return connectToWalletConnect(wallet.provider);
-    default:
-      return connectToMetamask();
-  }
-};
+import { useWalletStore } from "../store";
+import { connectTo, isWalletConnectProvider } from "../utils";
 
 export const useEtherWallet = () => {
-  return { connectTo };
+  const currentWallet = useWalletStore((state) => state.currentWallet);
+  const account = useWalletStore((state) => state.account);
+  const provider = useWalletStore((state) => state.provider);
+  const isLoading = useWalletStore((state) => state.isLoading);
+  const initializeStore = useWalletStore((state) => state.initializeStore);
+
+  const chainId = () => {
+    if (provider !== undefined && provider.chainId !== null) {
+      return parseInt(provider.chainId.toString(), 16);
+    }
+    return undefined;
+  };
+
+  const disconnect = async () => {
+    initializeStore();
+    if (isWalletConnectProvider(provider, currentWallet)) {
+      await provider.disconnect();
+    }
+  };
+
+  const isWalletConnected =
+    provider !== undefined &&
+    account !== undefined &&
+    currentWallet !== undefined;
+
+  return {
+    connectTo,
+    disconnect,
+    isLoading,
+    isWalletConnected,
+    currentWallet,
+    account,
+    provider,
+    chainId: chainId(),
+  };
 };
