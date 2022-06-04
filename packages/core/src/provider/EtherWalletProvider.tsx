@@ -1,7 +1,7 @@
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import { useEffect } from "react";
 import { SupportedWallet } from "../constants";
-import { useWalletStore } from "../store";
+import { useProviderStore, useWalletConnectStore } from "../store";
 import { connectTo } from "../utils";
 
 type EtherWalletProviderProps = {
@@ -13,11 +13,12 @@ export const EtherWalletProvider = ({
   walletConnectProvider,
   children,
 }: EtherWalletProviderProps) => {
-  const provider = useWalletStore((state) => state.provider);
-  const currentWallet = useWalletStore((state) => state.currentWallet);
-  const setWalletState = useWalletStore((state) => state.setWalletState);
-  const setLoading = useWalletStore((state) => state.setLoading);
-  const setWalletConnectProvider = useWalletStore(
+  const provider = useProviderStore((state) => state.provider);
+  const currentWallet = useProviderStore((state) => state.currentWallet);
+  const isLoading = useProviderStore((state) => state.isLoading);
+  const setWalletState = useProviderStore((state) => state.setWalletState);
+  const setLoading = useProviderStore((state) => state.setLoading);
+  const setWalletConnectProvider = useWalletConnectStore(
     (state) => state.setWalletConnectProvider
   );
 
@@ -35,21 +36,23 @@ export const EtherWalletProvider = ({
 
   useEffect(() => {
     (async function isVisitAgain() {
-      switch (currentWallet) {
-        case SupportedWallet.MetaMask:
-          setWalletState({ provider: window.ethereum });
-          break;
-        case SupportedWallet.WalletConnect:
-          setWalletState({ provider: walletConnectProvider });
-          break;
-        default:
-          setLoading(false);
-          return;
+      if (currentWallet !== undefined && isLoading) {
+        switch (currentWallet) {
+          case SupportedWallet.MetaMask:
+            setWalletState({ provider: window.ethereum });
+            break;
+          case SupportedWallet.WalletConnect:
+            setWalletState({ provider: walletConnectProvider });
+            break;
+          default:
+            setLoading(false);
+            return;
+        }
+        await connectTo(currentWallet);
+        setLoading(false);
       }
-      await connectTo(currentWallet);
-      setLoading(false);
     })();
-  }, [currentWallet, walletConnectProvider]);
+  }, [currentWallet, isLoading]);
 
   useEffect(() => {
     if (provider !== undefined) {
@@ -58,7 +61,7 @@ export const EtherWalletProvider = ({
         setWalletState({ account });
       };
       const handleDisconnect = () => {
-        useWalletStore.persist.clearStorage();
+        useProviderStore.persist.clearStorage();
       };
 
       provider.on("accountsChanged", handleAccountsChanged);

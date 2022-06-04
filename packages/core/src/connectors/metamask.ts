@@ -1,4 +1,4 @@
-import { useWalletStore } from "../store";
+import { useProviderStore } from "../store";
 
 export const connectToMetamask = async () => {
   if (typeof window !== "undefined") {
@@ -7,7 +7,7 @@ export const connectToMetamask = async () => {
         const [account] = (await window.ethereum.request({
           method: "eth_requestAccounts",
         })) as unknown as string[];
-        useWalletStore.setState({
+        useProviderStore.setState({
           currentWallet: "MetaMask",
           account,
           provider: window.ethereum,

@@ -1,15 +1,15 @@
-import { useWalletStore } from "../store";
+import { useWalletConnectStore, useProviderStore } from "../store";
 import { isWalletConnectProvider } from "../utils";
 
 export const connectToWalletConnect = async () => {
-  if (typeof window !== "undefined") {    
-    const provider = useWalletStore.getState().walletConnectProvider;
-    const initializeStore = useWalletStore.getState().initializeStore;
-    
+  if (typeof window !== "undefined") {
+    const provider = useWalletConnectStore.getState().walletConnectProvider;
+    const initializeStore = useProviderStore.getState().initializeStore;
+
     if (isWalletConnectProvider(provider, "WalletConnect")) {
       try {
         await provider.enable();
-        useWalletStore.setState({
+        useProviderStore.setState({
           currentWallet: "WalletConnect",
           account: provider.accounts[0],
           provider,

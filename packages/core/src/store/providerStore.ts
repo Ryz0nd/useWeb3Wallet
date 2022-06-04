@@ -3,7 +3,7 @@ import type WalletConnectProvider from "@walletconnect/web3-provider";
 import create from "zustand";
 import { persist } from "zustand/middleware";
 
-export type WalletState =
+export type ProviderState =
   | {
       currentWallet: "MetaMask";
       account: string;
@@ -20,30 +20,26 @@ export type WalletState =
       provider: undefined;
     };
 
-type WalletHelper = {
+type ProviderHelper = {
   isLoading: boolean;
   initializeStore: () => void;
-  walletConnectProvider: WalletConnectProvider | undefined;
-  setWalletConnectProvider: (state: WalletHelper['walletConnectProvider']) => void;
   setLoading: (state: boolean) => void;
-  setWalletState: (state: Partial<WalletState>) => void;
+  setWalletState: (state: Partial<ProviderState>) => void;
 };
 
-export const useWalletStore = create<WalletState & WalletHelper>()(
+export const useProviderStore = create<ProviderState & ProviderHelper>()(
   persist(
     (set) => ({
       isLoading: true,
       currentWallet: undefined,
       account: undefined,
       provider: undefined,
-      walletConnectProvider: undefined,
       initializeStore: () =>
         set({
           currentWallet: undefined,
           account: undefined,
           provider: undefined,
         }),
-      setWalletConnectProvider: (state) => set({walletConnectProvider: state}),
       setLoading: (state) => set({ isLoading: state }),
       setWalletState: (state) => set({ ...state }),
     }),

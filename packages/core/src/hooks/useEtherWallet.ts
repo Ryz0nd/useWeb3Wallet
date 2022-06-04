@@ -1,12 +1,12 @@
-import { useWalletStore } from "../store";
+import { useProviderStore } from "../store";
 import { connectTo, isWalletConnectProvider } from "../utils";
 
 export const useEtherWallet = () => {
-  const currentWallet = useWalletStore((state) => state.currentWallet);
-  const account = useWalletStore((state) => state.account);
-  const provider = useWalletStore((state) => state.provider);
-  const isLoading = useWalletStore((state) => state.isLoading);
-  const initializeStore = useWalletStore((state) => state.initializeStore);
+  const currentWallet = useProviderStore((state) => state.currentWallet);
+  const account = useProviderStore((state) => state.account);
+  const provider = useProviderStore((state) => state.provider);
+  const isLoading = useProviderStore((state) => state.isLoading);
+  const initializeStore = useProviderStore((state) => state.initializeStore);
 
   const chainId = () => {
     if (provider !== undefined && provider.chainId !== null) {
