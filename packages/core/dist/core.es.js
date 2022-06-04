@@ -313,18 +313,16 @@ const persistImpl = (config, baseOptions) => (set, get, api) => {
   return stateFromStorage || configResult;
 };
 const persist = persistImpl;
-const useWalletStore = create$1()(persist((set) => ({
+const useProviderStore = create$1()(persist((set) => ({
   isLoading: true,
   currentWallet: void 0,
   account: void 0,
   provider: void 0,
-  walletConnectProvider: void 0,
   initializeStore: () => set({
     currentWallet: void 0,
     account: void 0,
     provider: void 0
   }),
-  setWalletConnectProvider: (state) => set({ walletConnectProvider: state }),
   setLoading: (state) => set({ isLoading: state }),
   setWalletState: (state) => set(__spreadValues({}, state))
 }), {
@@ -344,6 +342,10 @@ const useWalletStore = create$1()(persist((set) => ({
     })
   })
 }));
+const useWalletConnectStore = create$1((set) => ({
+  walletConnectProvider: void 0,
+  setWalletConnectProvider: (state) => set({ walletConnectProvider: state })
+}));
 const connectToMetamask = async () => {
   if (typeof window !== "undefined") {
     if (window.ethereum !== void 0) {
@@ -351,7 +353,7 @@ const connectToMetamask = async () => {
         const [account] = await window.ethereum.request({
           method: "eth_requestAccounts"
         });
-        useWalletStore.setState({
+        useProviderStore.setState({
           currentWallet: "MetaMask",
           account,
           provider: window.ethereum
@@ -366,23 +368,19 @@ const connectToMetamask = async () => {
 };
 const connectToWalletConnect = async () => {
   if (typeof window !== "undefined") {
-    const provider = useWalletStore.getState().walletConnectProvider;
-    const initializeStore = useWalletStore.getState().initializeStore;
+    const provider = useWalletConnectStore.getState().walletConnectProvider;
+    const initializeStore = useProviderStore.getState().initializeStore;
     if (isWalletConnectProvider(provider, "WalletConnect")) {
       try {
-        provider.qrcodeModal.open(provider.connector.uri, false);
         await provider.enable();
-        useWalletStore.setState({
+        useProviderStore.setState({
           currentWallet: "WalletConnect",
           account: provider.accounts[0],
           provider
         });
       } catch (error) {
-        if (error.message.includes("User closed modal")) {
-          provider.qrcodeModal.close();
-          return;
-        }
         initializeStore();
+        console.error(error);
       }
     } else {
       initializeStore();
@@ -407,11 +405,11 @@ function isWalletConnectProvider(provider, currentWallet) {
   return provider !== void 0 && currentWallet === "WalletConnect";
 }
 const useEtherWallet = () => {
-  const currentWallet = useWalletStore((state) => state.currentWallet);
-  const account = useWalletStore((state) => state.account);
-  const provider = useWalletStore((state) => state.provider);
-  const isLoading = useWalletStore((state) => state.isLoading);
-  const initializeStore = useWalletStore((state) => state.initializeStore);
+  const currentWallet = useProviderStore((state) => state.currentWallet);
+  const account = useProviderStore((state) => state.account);
+  const provider = useProviderStore((state) => state.provider);
+  const isLoading = useProviderStore((state) => state.isLoading);
+  const initializeStore = useProviderStore((state) => state.initializeStore);
   const chainId = () => {
     if (provider !== void 0 && provider.chainId !== null) {
       return parseInt(provider.chainId.toString(), 16);
@@ -472,11 +470,12 @@ const EtherWalletProvider = ({
   walletConnectProvider,
   children
 }) => {
-  const provider = useWalletStore((state) => state.provider);
-  const currentWallet = useWalletStore((state) => state.currentWallet);
-  const setWalletState = useWalletStore((state) => state.setWalletState);
-  const setLoading = useWalletStore((state) => state.setLoading);
-  const setWalletConnectProvider = useWalletStore((state) => state.setWalletConnectProvider);
+  const provider = useProviderStore((state) => state.provider);
+  const currentWallet = useProviderStore((state) => state.currentWallet);
+  const isLoading = useProviderStore((state) => state.isLoading);
+  const setWalletState = useProviderStore((state) => state.setWalletState);
+  const setLoading = useProviderStore((state) => state.setLoading);
+  const setWalletConnectProvider = useWalletConnectStore((state) => state.setWalletConnectProvider);
   useEffect(() => {
     setWalletConnectProvider(walletConnectProvider);
   }, [walletConnectProvider]);
@@ -489,25 +488,27 @@ const EtherWalletProvider = ({
   }, [currentWallet]);
   useEffect(() => {
     (async function isVisitAgain() {
-      switch (currentWallet) {
-        case SupportedWallet.MetaMask:
-          setWalletState({
-            provider: window.ethereum
-          });
-          break;
-        case SupportedWallet.WalletConnect:
-          setWalletState({
-            provider: walletConnectProvider
-          });
-          break;
-        default:
-          setLoading(false);
-          return;
+      if (currentWallet !== void 0 && isLoading) {
+        switch (currentWallet) {
+          case SupportedWallet.MetaMask:
+            setWalletState({
+              provider: window.ethereum
+            });
+            break;
+          case SupportedWallet.WalletConnect:
+            setWalletState({
+              provider: walletConnectProvider
+            });
+            break;
+          default:
+            setLoading(false);
+            return;
+        }
+        await connectTo(currentWallet);
+        setLoading(false);
       }
-      await connectTo(currentWallet);
-      setLoading(false);
     })();
-  }, [currentWallet, walletConnectProvider]);
+  }, [currentWallet, isLoading]);
   useEffect(() => {
     if (provider !== void 0) {
       const handleAccountsChanged = (accounts) => {
@@ -517,7 +518,7 @@ const EtherWalletProvider = ({
         });
       };
       const handleDisconnect = () => {
-        useWalletStore.persist.clearStorage();
+        useProviderStore.persist.clearStorage();
       };
       provider.on("accountsChanged", handleAccountsChanged);
       provider.on("disconnect", handleDisconnect);

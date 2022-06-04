@@ -1,1 +1,2 @@
-export { useWalletStore } from "./walletStore";
+export { useProviderStore } from "./providerStore";
+export { useWalletConnectStore } from "./walletConnectStore";
