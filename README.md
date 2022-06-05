@@ -53,7 +53,7 @@ const Page = () => {
               <button type="button" onClick={() => connectTo("MetaMask")}>
                 MetaMask
               </button>
-              <button type="button" onClick={() => connectTo("WalletConnect")}>
+              <button type="button" onClick={() => connectTo("WalletConnect")}> // Set walletConnectProvider in walletOptions
                 Wallet Connect
               </button>
             </>
