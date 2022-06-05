@@ -1,5 +1,5 @@
 import type { NextPage } from "next";
-import { useEtherWallet, EtherWalletProvider } from "use-ether-wallet";
+import { useEtherWallet, EtherWalletProvider } from "use-web3wallet";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const walletConnectProvider = new WalletConnectProvider({

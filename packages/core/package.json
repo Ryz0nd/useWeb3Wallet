@@ -1,5 +1,5 @@
 {
-  "name": "use-ether-wallet",
+  "name": "use-web3wallet",
   "version": "0.0.1",
   "license": "MIT",
   "scripts": {
@@ -22,6 +22,7 @@
     "vite-plugin-dts": "^1.2.0"
   },
   "dependencies": {
+    "zustand": "^4.0.0-rc.1"
   },
   "files": [
     "dist"
