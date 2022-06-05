@@ -4,9 +4,10 @@ import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const walletConnectProvider = new WalletConnectProvider({
   chainId: 80001,
+  infuraId: "",
   rpc: {
     80001:
-      "https://rpc-mumbai.maticvigil.com/v1/f4d1d0396f0675278c5faf078d9fab48a08455e8",
+      "",
   },
 });
 
