@@ -4,15 +4,21 @@ import { SupportedWallet } from "../constants";
 import { useProviderStore, useWalletConnectStore } from "../store";
 import { connectTo } from "../utils";
 
-type EtherWalletProviderProps = {
+export type WalletOptions = {
   walletConnectProvider?: WalletConnectProvider;
+};
+
+type EtherWalletProviderProps = {
+  walletOptions?: WalletOptions;
   children: React.ReactNode;
 };
 
 export const EtherWalletProvider = ({
-  walletConnectProvider,
+  walletOptions,
   children,
 }: EtherWalletProviderProps) => {
+  const walletConnectProvider = walletOptions?.walletConnectProvider;
+
   const provider = useProviderStore((state) => state.provider);
   const currentWallet = useProviderStore((state) => state.currentWallet);
   const isLoading = useProviderStore((state) => state.isLoading);

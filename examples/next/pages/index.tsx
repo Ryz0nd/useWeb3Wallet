@@ -1,21 +1,23 @@
 import type { NextPage } from "next";
-import { useEtherWallet, EtherWalletProvider } from "use-web3wallet";
+import {
+  useEtherWallet,
+  EtherWalletProvider,
+  WalletOptions,
+} from "use-web3wallet";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
-const walletConnectProvider = new WalletConnectProvider({
-  chainId: 80001,
-  infuraId: "",
-  rpc: {
-    80001:
-      "",
-  },
-});
+const walletOptions: WalletOptions = {
+  walletConnectProvider: new WalletConnectProvider({
+    chainId: 1,
+    infuraId: "",
+  }),
+};
 
 const Home: NextPage = () => {
   const {
-    isLoading,
     connectTo,
     disconnect,
+    isLoading,
     provider,
     currentWallet,
     chainId,
@@ -27,10 +29,10 @@ const Home: NextPage = () => {
   console.log("currentWallet", currentWallet);
   console.log("isWalletConnected:", isWalletConnected);
   console.log("isLoading", isLoading);
-  console.log(provider)
+  console.log(provider);
 
   return (
-    <EtherWalletProvider walletConnectProvider={walletConnectProvider}>
+    <EtherWalletProvider walletOptions={walletOptions}>
       {!isLoading && (
         <>
           {!isWalletConnected ? (
