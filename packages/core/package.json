@@ -1,12 +1,27 @@
 {
   "name": "use-web3wallet",
-  "version": "0.0.2",
+  "version": "0.0.3",
   "license": "MIT",
   "author": {
     "name": "Ryz0nd <ryzond6728@gmail.com>"
   },
+  "description": "Easy-to-use Ethereum/Cosmos provider hook",
+  "keywords": [
+    "web3",
+    "wallet",
+    "ethereum",
+    "metamask",
+    "walletconnect"
+  ],
+  "homepage": "https://github.com/alpha-dao/useWeb3Wallet",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/alpha-dao/useWeb3Wallet.git"
+  },
+  "bugs": {
+    "url": "https://github.com/alpha-dao/useWeb3Wallet/issues"
+  },
   "scripts": {
-    "dev": "vite",
     "build": "tsc && vite build",
     "preview": "vite preview"
   },
