@@ -520,9 +520,10 @@ reactJsxRuntime_production_min.jsxs = q;
 const jsx = jsxRuntime.exports.jsx;
 const Fragment = jsxRuntime.exports.Fragment;
 const EtherWalletProvider = ({
-  walletConnectProvider,
+  walletOptions,
   children
 }) => {
+  const walletConnectProvider = walletOptions == null ? void 0 : walletOptions.walletConnectProvider;
   const provider = useProviderStore((state) => state.provider);
   const currentWallet = useProviderStore((state) => state.currentWallet);
   const isLoading = useProviderStore((state) => state.isLoading);

@@ -1,7 +1,10 @@
 import WalletConnectProvider from "@walletconnect/web3-provider";
-declare type EtherWalletProviderProps = {
+export declare type WalletOptions = {
     walletConnectProvider?: WalletConnectProvider;
+};
+declare type EtherWalletProviderProps = {
+    walletOptions?: WalletOptions;
     children: React.ReactNode;
 };
-export declare const EtherWalletProvider: ({ walletConnectProvider, children, }: EtherWalletProviderProps) => JSX.Element;
+export declare const EtherWalletProvider: ({ walletOptions, children, }: EtherWalletProviderProps) => JSX.Element;
 export {};
