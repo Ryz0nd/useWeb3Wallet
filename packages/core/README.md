@@ -23,7 +23,7 @@ const walletOptions = {
 
 const Index = () => {
   return(
-    <EtherWalletProvider {...walletOptions}>
+    <EtherWalletProvider walletOptions={walletOptions}>
       ...
     </EtherWalletProvider />
   );
