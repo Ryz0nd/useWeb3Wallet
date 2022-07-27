@@ -1,11 +1,11 @@
 {
-  "name": "use-web3wallet",
+  "name": "use-web3wallet-ethereum",
   "version": "0.0.4",
   "license": "MIT",
   "author": {
     "name": "Ryz0nd <ryzond6728@gmail.com>"
   },
-  "description": "Easy-to-use Ethereum/Cosmos provider hook",
+  "description": "Easy-to-use Ethereum provider hook",
   "keywords": [
     "web3",
     "wallet",
@@ -33,14 +33,14 @@
     "@metamask/providers": "^8.1.1",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",
-    "@vitejs/plugin-react": "^1.3.0",
+    "@vitejs/plugin-react": "^2.0.0",
     "@walletconnect/web3-provider": "^1.7.8",
     "typescript": "^4.6.3",
-    "vite": "^2.9.9",
-    "vite-plugin-dts": "^1.2.0"
+    "vite": "^3.0.3",
+    "vite-plugin-dts": "^1.4.0"
   },
   "dependencies": {
-    "zustand": "^4.0.0-rc.1"
+    "zustand": "^4.0.0"
   },
   "files": [
     "dist"

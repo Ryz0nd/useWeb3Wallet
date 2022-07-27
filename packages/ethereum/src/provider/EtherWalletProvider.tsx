@@ -1,5 +1,5 @@
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { useEffect } from "react";
+import { ReactNode, useEffect } from "react";
 import { SupportedWallet } from "../constants";
 import { useProviderStore, useWalletConnectStore } from "../store";
 import { connectTo } from "../utils";
@@ -10,7 +10,7 @@ export type WalletOptions = {
 
 type EtherWalletProviderProps = {
   walletOptions?: WalletOptions;
-  children: React.ReactNode;
+  children: ReactNode;
 };
 
 export const EtherWalletProvider = ({

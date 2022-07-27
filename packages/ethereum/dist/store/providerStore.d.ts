@@ -29,6 +29,9 @@ export declare const useProviderStore: import("zustand").UseBoundStore<Omit<impo
         hasHydrated: () => boolean;
         onHydrate: (fn: (state: ProviderState & ProviderHelper) => void) => () => void;
         onFinishHydration: (fn: (state: ProviderState & ProviderHelper) => void) => () => void;
+        getOptions: () => Partial<import("zustand/middleware").PersistOptions<ProviderState & ProviderHelper, {
+            [k: string]: any;
+        }>>;
     };
 }>;
 export {};
