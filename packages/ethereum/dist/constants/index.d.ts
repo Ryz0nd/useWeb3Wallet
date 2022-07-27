@@ -1,1 +1,0 @@
-export { SupportedWallet } from "./supportedWallet";
