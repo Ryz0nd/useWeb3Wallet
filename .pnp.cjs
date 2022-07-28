@@ -53,6 +53,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
         [null, {\
           "packageLocation": "./",\
           "packageDependencies": [\
+            ["@types/node", "npm:18.6.2"],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"]\
           ],\
           "linkType": "SOFT"\
@@ -8186,9 +8187,12 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@keplr-wallet/types", "npm:0.10.13"],\
             ["@types/react", "npm:17.0.47"],\
             ["@types/react-dom", "npm:17.0.17"],\
+            ["@vitejs/plugin-react", "virtual:c79fe6a6469afb58208cfabe31a72a984d4a73ef5d48cd4277faaa14f56330d179b8ccd97e9103f14646c904ac002b06d36ea26f1e4c5807f872b28c5afa8434#npm:2.0.0"],\
             ["react", null],\
             ["react-dom", null],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"],\
+            ["vite", "virtual:c79fe6a6469afb58208cfabe31a72a984d4a73ef5d48cd4277faaa14f56330d179b8ccd97e9103f14646c904ac002b06d36ea26f1e4c5807f872b28c5afa8434#npm:3.0.3"],\
+            ["vite-plugin-dts", "virtual:c79fe6a6469afb58208cfabe31a72a984d4a73ef5d48cd4277faaa14f56330d179b8ccd97e9103f14646c904ac002b06d36ea26f1e4c5807f872b28c5afa8434#npm:1.4.0"],\
             ["zustand", "virtual:2fda1652211d3cbc5dfe337fcb918b04f5f0162b1a43c2ea526f31e6885a94bcc4215ab99e970af8e6c56d797346dc7dd2e761ed26c8bc68f776c1a3fd9bb864#npm:4.0.0"]\
           ],\
           "packagePeers": [\
@@ -8204,7 +8208,10 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@keplr-wallet/types", "npm:0.10.13"],\
             ["@types/react", "npm:17.0.47"],\
             ["@types/react-dom", "npm:17.0.17"],\
+            ["@vitejs/plugin-react", "virtual:c79fe6a6469afb58208cfabe31a72a984d4a73ef5d48cd4277faaa14f56330d179b8ccd97e9103f14646c904ac002b06d36ea26f1e4c5807f872b28c5afa8434#npm:2.0.0"],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"],\
+            ["vite", "virtual:c79fe6a6469afb58208cfabe31a72a984d4a73ef5d48cd4277faaa14f56330d179b8ccd97e9103f14646c904ac002b06d36ea26f1e4c5807f872b28c5afa8434#npm:3.0.3"],\
+            ["vite-plugin-dts", "virtual:c79fe6a6469afb58208cfabe31a72a984d4a73ef5d48cd4277faaa14f56330d179b8ccd97e9103f14646c904ac002b06d36ea26f1e4c5807f872b28c5afa8434#npm:1.4.0"],\
             ["zustand", "virtual:2fda1652211d3cbc5dfe337fcb918b04f5f0162b1a43c2ea526f31e6885a94bcc4215ab99e970af8e6c56d797346dc7dd2e761ed26c8bc68f776c1a3fd9bb864#npm:4.0.0"]\
           ],\
           "linkType": "SOFT"\
@@ -8255,6 +8262,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
           "packageLocation": "./",\
           "packageDependencies": [\
             ["use-web3wallet-monorepo", "workspace:."],\
+            ["@types/node", "npm:18.6.2"],\
             ["typescript", "patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"]\
           ],\
           "linkType": "SOFT"\
