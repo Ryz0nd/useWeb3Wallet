@@ -1384,6 +1384,13 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@types/node", "npm:18.6.1"]\
           ],\
           "linkType": "HARD"\
+        }],\
+        ["npm:18.6.2", {\
+          "packageLocation": "./.yarn/cache/@types-node-npm-18.6.2-cd106eb850-644c460bae.zip/node_modules/@types/node/",\
+          "packageDependencies": [\
+            ["@types/node", "npm:18.6.2"]\
+          ],\
+          "linkType": "HARD"\
         }]\
       ]],\
       ["@types/pbkdf2", [\
@@ -6859,7 +6866,7 @@ function $$SETUP_STATE(hydrateRuntimeState, basePath) {
             ["@protobufjs/pool", "npm:1.1.0"],\
             ["@protobufjs/utf8", "npm:1.1.0"],\
             ["@types/long", "npm:4.0.2"],\
-            ["@types/node", "npm:18.6.1"],\
+            ["@types/node", "npm:18.6.2"],\
             ["long", "npm:4.0.0"]\
           ],\
           "linkType": "HARD"\
