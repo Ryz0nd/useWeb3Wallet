@@ -1,5 +1,5 @@
 {
-  "name": "use-web3wallet-monorepo",
+  "name": "@use-web3wallet/monorepo",
   "version": "0.0.1",
   "description": "",
   "private": true,
@@ -7,18 +7,15 @@
     "packages/*",
     "examples/*"
   ],
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
-  },
+  "license": "MIT",
+  "homepage": "https://github.com/alpha-dao/useWeb3Wallet",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/alpha-dao/useEtherWallet.git"
+    "url": "git+https://github.com/alpha-dao/useWeb3Wallet.git"
   },
-  "license": "MIT",
   "bugs": {
-    "url": "https://github.com/alpha-dao/useEtherWallet/issues"
+    "url": "https://github.com/alpha-dao/useWeb3Wallet/issues"
   },
-  "homepage": "https://github.com/alpha-dao/useEtherWallet#readme",
   "packageManager": "yarn@3.2.2",
   "devDependencies": {
     "@types/node": "^18.6.2",

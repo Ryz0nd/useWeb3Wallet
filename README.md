@@ -1,7 +1,7 @@
 # useWeb3Wallet
 
 ### Usage
-1. Install `use-web3wallet`
+1. Install `@use-web3wallet/ethereum`
 ```
 yarn add use-web3wallet
 
@@ -11,7 +11,7 @@ npm install --save use-web3wallet
 
 2. Add `EtherWalletProvider` to your DApp
 ```typescript
-import { EtherWalletProvider } from "use-web3wallet";
+import { EtherWalletProvider } from "@use-web3wallet/ethereum";
 import WalletConnectProvider from "@walletconnect/web3-provider"; // optional 
 
 
@@ -25,13 +25,15 @@ const Index = () => {
   return(
     <EtherWalletProvider walletOptions={walletOptions}>
       ...
-    </EtherWalletProvider />
+    </EtherWalletProvider>
   );
 }
 ```
 
 3. Use `useEtherWallet` hook
 ```typescript
+import { useEtherWallet } from "@use-web3wallet/ethereum";
+
 const Page = () => {
   const {
     connectTo,

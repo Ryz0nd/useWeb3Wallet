@@ -1239,6 +1239,43 @@ __metadata:
   languageName: node
   linkType: hard
 
+"@use-web3wallet/cosmos@workspace:packages/cosmos":
+  version: 0.0.0-use.local
+  resolution: "@use-web3wallet/cosmos@workspace:packages/cosmos"
+  dependencies:
+    "@keplr-wallet/types": ^0.10.13
+    "@types/react": ^17.0.0
+    "@types/react-dom": ^17.0.0
+    "@vitejs/plugin-react": ^2.0.0
+    typescript: ^4.7.4
+    vite: ^3.0.3
+    vite-plugin-dts: ^1.4.0
+    zustand: ^4.0.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  languageName: unknown
+  linkType: soft
+
+"@use-web3wallet/ethereum@*, @use-web3wallet/ethereum@workspace:packages/ethereum":
+  version: 0.0.0-use.local
+  resolution: "@use-web3wallet/ethereum@workspace:packages/ethereum"
+  dependencies:
+    "@metamask/providers": ^8.1.1
+    "@types/react": ^17.0.0
+    "@types/react-dom": ^17.0.0
+    "@vitejs/plugin-react": ^2.0.0
+    "@walletconnect/web3-provider": ^1.7.8
+    typescript: ^4.7.4
+    vite: ^3.0.3
+    vite-plugin-dts: ^1.4.0
+    zustand: ^4.0.0
+  peerDependencies:
+    react: ^16.8.0 || ^17.0.0 || ^18.0.0
+    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
+  languageName: unknown
+  linkType: soft
+
 "@vitejs/plugin-react@npm:^2.0.0":
   version: 2.0.0
   resolution: "@vitejs/plugin-react@npm:2.0.0"
@@ -5295,6 +5332,7 @@ __metadata:
     "@types/node": 17.0.36
     "@types/react": 18.0.9
     "@types/react-dom": 18.0.5
+    "@use-web3wallet/ethereum": "*"
     "@walletconnect/web3-provider": ^1.7.8
     eslint: 8.16.0
     eslint-config-next: 12.1.6
@@ -5302,7 +5340,6 @@ __metadata:
     react: 18.1.0
     react-dom: 18.1.0
     typescript: 4.7.2
-    use-web3wallet: "*"
   languageName: unknown
   linkType: soft
 
@@ -6896,7 +6933,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@npm:^4.6.3, typescript@npm:^4.7.4":
+"typescript@npm:^4.7.4":
   version: 4.7.4
   resolution: "typescript@npm:4.7.4"
   bin:
@@ -6926,7 +6963,7 @@ __metadata:
   languageName: node
   linkType: hard
 
-"typescript@patch:typescript@^4.6.3#~builtin<compat/typescript>, typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
+"typescript@patch:typescript@^4.7.4#~builtin<compat/typescript>":
   version: 4.7.4
   resolution: "typescript@patch:typescript@npm%3A4.7.4#~builtin<compat/typescript>::version=4.7.4&hash=f456af"
   bin:
@@ -7029,62 +7066,12 @@ __metadata:
   languageName: node
   linkType: hard
 
-"use-web3wallet-cosmos@*, use-web3wallet-cosmos@workspace:packages/cosmos":
-  version: 0.0.0-use.local
-  resolution: "use-web3wallet-cosmos@workspace:packages/cosmos"
-  dependencies:
-    "@keplr-wallet/types": ^0.10.13
-    "@types/react": ^17.0.0
-    "@types/react-dom": ^17.0.0
-    "@vitejs/plugin-react": ^2.0.0
-    typescript: ^4.7.4
-    vite: ^3.0.3
-    vite-plugin-dts: ^1.4.0
-    zustand: ^4.0.0
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  languageName: unknown
-  linkType: soft
-
-"use-web3wallet-ethereum@*, use-web3wallet-ethereum@workspace:packages/ethereum":
-  version: 0.0.0-use.local
-  resolution: "use-web3wallet-ethereum@workspace:packages/ethereum"
-  dependencies:
-    "@metamask/providers": ^8.1.1
-    "@types/react": ^17.0.0
-    "@types/react-dom": ^17.0.0
-    "@vitejs/plugin-react": ^2.0.0
-    "@walletconnect/web3-provider": ^1.7.8
-    typescript: ^4.7.4
-    vite: ^3.0.3
-    vite-plugin-dts: ^1.4.0
-    zustand: ^4.0.0
-  peerDependencies:
-    react: ^16.8.0 || ^17.0.0 || ^18.0.0
-    react-dom: ^16.8.0 || ^17.0.0 || ^18.0.0
-  languageName: unknown
-  linkType: soft
-
 "use-web3wallet-monorepo@workspace:.":
   version: 0.0.0-use.local
   resolution: "use-web3wallet-monorepo@workspace:."
   dependencies:
     "@types/node": ^18.6.2
     typescript: ^4.7.4
-  languageName: unknown
-  linkType: soft
-
-"use-web3wallet@*, use-web3wallet@workspace:packages/core":
-  version: 0.0.0-use.local
-  resolution: "use-web3wallet@workspace:packages/core"
-  dependencies:
-    "@vitejs/plugin-react": ^2.0.0
-    typescript: ^4.6.3
-    use-web3wallet-cosmos: "*"
-    use-web3wallet-ethereum: "*"
-    vite: ^3.0.3
-    vite-plugin-dts: ^1.4.0
   languageName: unknown
   linkType: soft
 

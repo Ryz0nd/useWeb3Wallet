@@ -1,6 +1,5 @@
-node_modules
 src
 types
 tsconfig.json
 tsconfig.node.json
-vite.config.json
+vite.config.ts

@@ -1,6 +1,6 @@
 {
-  "name": "use-web3wallet-ethereum",
-  "version": "0.0.5",
+  "name": "@use-web3wallet/ethereum",
+  "version": "0.0.1",
   "license": "MIT",
   "author": {
     "name": "Ryz0nd <ryzond6728@gmail.com>"
@@ -9,9 +9,9 @@
   "keywords": [
     "web3",
     "wallet",
-    "ethereum",
-    "metamask",
-    "walletconnect"
+    "Ethereum",
+    "Metamask",
+    "Wallet Connect"
   ],
   "homepage": "https://github.com/alpha-dao/useWeb3Wallet",
   "repository": {

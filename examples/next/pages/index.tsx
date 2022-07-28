@@ -3,7 +3,7 @@ import {
   useEtherWallet,
   EtherWalletProvider,
   WalletOptions,
-} from "use-web3wallet";
+} from "@use-web3wallet/ethereum";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
 const walletOptions: WalletOptions = {
