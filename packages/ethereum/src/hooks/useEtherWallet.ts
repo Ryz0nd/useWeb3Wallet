@@ -1,5 +1,6 @@
-import { useProviderStore } from "../store";
-import { connectTo, isWalletConnectProvider } from "../utils";
+import { connectTo } from "../connectors";
+import { useProviderStore } from "../stores";
+import { isWalletConnectProvider } from "../utils";
 
 export const useEtherWallet = () => {
   const currentWallet = useProviderStore((state) => state.currentWallet);

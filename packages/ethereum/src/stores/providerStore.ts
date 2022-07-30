@@ -2,15 +2,16 @@ import type { MetaMaskInpageProvider } from "@metamask/providers";
 import type WalletConnectProvider from "@walletconnect/web3-provider";
 import create from "zustand";
 import { persist } from "zustand/middleware";
+import { EthereumWallet } from "../constants";
 
 export type ProviderState =
   | {
-      currentWallet: "MetaMask";
+      currentWallet: typeof EthereumWallet.MetaMask;
       account: string;
       provider: MetaMaskInpageProvider;
     }
   | {
-      currentWallet: "WalletConnect";
+      currentWallet: typeof EthereumWallet.WalletConnect;
       account: string;
       provider: WalletConnectProvider;
     }
