@@ -55,10 +55,11 @@ export const CosmosProvider = ({
         const allChainInfos: Promise<
           Record<string, { signer: OfflineSigner; accounts: AccountData[] }>
         > = supportedChainIds.reduce(async (acc, cur) => {
+          const otherChainInfo = await acc;
           const signer = provider.getOfflineSigner(cur);
           const accounts = await signer.getAccounts();
           const chainInfo = { [cur]: { signer, accounts } };
-          return { ...acc, chainInfo };
+          return { ...otherChainInfo, ...chainInfo };
         }, Promise.resolve({}));
 
         const chainInfos = await allChainInfos;

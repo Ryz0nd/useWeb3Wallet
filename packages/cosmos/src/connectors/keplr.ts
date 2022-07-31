@@ -14,7 +14,9 @@ export const connectToKeplr = async () => {
         keplrWalletOption?.supportedChainIds &&
         supportedChainIds.length > 0
       ) {
-        await window.keplr!.enable(keplrWalletOption.supportedChainIds);
+        await Promise.all(supportedChainIds.map(async (id) => {
+          await window.keplr!.enable(id);
+        }))
       }
 
       useProviderStore.setState({
