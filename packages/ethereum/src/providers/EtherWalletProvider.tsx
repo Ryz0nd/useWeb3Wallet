@@ -4,12 +4,12 @@ import { connectTo } from "../connectors";
 import { EthereumWallet } from "../constants";
 import { useProviderStore, useWalletConnectStore } from "../stores";
 
-export type WalletOptions = {
+export type EtherWalletOptions = {
   walletConnectProvider?: WalletConnectProvider;
 };
 
 type EtherWalletProviderProps = {
-  walletOptions?: WalletOptions;
+  walletOptions?: EtherWalletOptions;
   children: ReactNode;
 };
 
