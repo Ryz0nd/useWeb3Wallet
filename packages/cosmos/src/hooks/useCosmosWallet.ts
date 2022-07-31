@@ -1,23 +1,25 @@
-import { isKeplrInstalled } from "../utils/isKeplrInstalled";
-import { isMobile } from "../utils/isMobile";
+import { connectTo } from "../connectors";
+import { useProviderStore } from "../stores";
 
 export const useCosmosWallet = () => {
-  const connect = () => {
-    if (!isKeplrInstalled) {
-      if (!isMobile) {
-        window.open(
-          "https://chrome.google.com/webstore/detail/keplr/dmkamcknogkgcdfhhbddcghachkejeap",
-          "_blank",
-          "noopener"
-        );
-      }
-    }
+  const currentWallet = useProviderStore((state) => state.currentWallet);
+  const provider = useProviderStore((state) => state.provider);
+  const isLoading = useProviderStore((state) => state.isLoading);
+  const initializeStore = useProviderStore((state) => state.initializeStore);
+
+  const disconnect = () => {
+    initializeStore();
   };
 
-  const disconnect = () => {};
+  const isWalletConnected =
+    provider !== undefined && currentWallet !== undefined;
 
   return {
-    connect,
+    connectTo,
     disconnect,
+    isLoading,
+    isWalletConnected,
+    currentWallet,
+    provider,
   };
 };
