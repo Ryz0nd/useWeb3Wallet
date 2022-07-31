@@ -6,7 +6,7 @@ import type { AccountData, OfflineSigner } from "@cosmjs/proto-signing";
 import { CosmosWallet } from "../constants";
 import { CosmosWalletOptions } from "../providers";
 
-export type ProviderState = {
+type ProviderState = {
   walletOptions: CosmosWalletOptions;
 } & (
   | {
