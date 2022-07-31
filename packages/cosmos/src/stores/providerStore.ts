@@ -1,17 +1,28 @@
-import { Keplr } from "@keplr-wallet/types";
 import create from "zustand";
 import { persist } from "zustand/middleware";
-import { CosmosWallet } from "../constants";
+import type { Keplr } from "@keplr-wallet/types";
+import type { AccountData, OfflineSigner } from "@cosmjs/proto-signing";
 
-export type ProviderState =
+import { CosmosWallet } from "../constants";
+import { CosmosWalletOptions } from "../providers";
+
+export type ProviderState = {
+  walletOptions: CosmosWalletOptions;
+} & (
   | {
       currentWallet: typeof CosmosWallet.Keplr;
+      chainInfos: Record<
+        string,
+        { accounts: AccountData[]; signer: OfflineSigner }
+      >;
       provider: Keplr;
     }
   | {
       currentWallet: undefined;
+      chainInfos: undefined;
       provider: undefined;
-    };
+    }
+);
 
 type ProviderHelper = {
   isLoading: boolean;
@@ -25,11 +36,14 @@ export const useProviderStore = create<ProviderState & ProviderHelper>()(
     (set) => ({
       isLoading: true,
       currentWallet: undefined,
+      walletOptions: {},
+      chainInfos: undefined,
       provider: undefined,
       initializeStore: () =>
         set({
           currentWallet: undefined,
           provider: undefined,
+          chainInfos: undefined,
         }),
       setLoading: (state) => set({ isLoading: state }),
       setWalletState: (state) => set({ ...state }),

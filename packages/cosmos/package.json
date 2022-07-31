@@ -29,6 +29,7 @@
     "react-dom": "^16.8.0 || ^17.0.0 || ^18.0.0"
   },
   "devDependencies": {
+    "@cosmjs/proto-signing": "^0.28.11",
     "@keplr-wallet/types": "^0.10.13",
     "@types/react": "^17.0.0",
     "@types/react-dom": "^17.0.0",

@@ -3,6 +3,7 @@ import { useProviderStore } from "../stores";
 
 export const useCosmosWallet = () => {
   const currentWallet = useProviderStore((state) => state.currentWallet);
+  const chainInfos = useProviderStore((state) => state.chainInfos);
   const provider = useProviderStore((state) => state.provider);
   const isLoading = useProviderStore((state) => state.isLoading);
   const initializeStore = useProviderStore((state) => state.initializeStore);
@@ -21,5 +22,6 @@ export const useCosmosWallet = () => {
     isWalletConnected,
     currentWallet,
     provider,
+    chainInfos,
   };
 };

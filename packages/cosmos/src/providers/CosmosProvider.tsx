@@ -1,17 +1,18 @@
-import { ReactNode, useEffect } from "react";
+import { useEffect } from "react";
+import type { ReactNode } from "react";
 import { connectTo } from "../connectors";
 import { CosmosWallet } from "../constants";
 import { useProviderStore } from "../stores";
+import type { AccountData, OfflineSigner } from "@cosmjs/proto-signing";
 
-export type WalletOptions = {
-  [CosmosWallet.Keplr]: {
-    autoinit?: boolean;
+export type CosmosWalletOptions = {
+  [CosmosWallet.Keplr]?: {
     supportedChainIds?: string[];
-  }
+  };
 };
 
 type CosmosProviderProps = {
-  walletOptions?: WalletOptions;
+  walletOptions?: CosmosWalletOptions;
   children: ReactNode;
 };
 
@@ -19,9 +20,15 @@ export const CosmosProvider = ({
   walletOptions,
   children,
 }: CosmosProviderProps) => {
+  const provider = useProviderStore((state) => state.provider);
   const currentWallet = useProviderStore((state) => state.currentWallet);
   const isLoading = useProviderStore((state) => state.isLoading);
   const setLoading = useProviderStore((state) => state.setLoading);
+  const setWalletState = useProviderStore((state) => state.setWalletState);
+
+  useEffect(() => {
+    setWalletState({ walletOptions });
+  }, [walletOptions]);
 
   useEffect(() => {
     const isDisconnected = currentWallet === undefined;
@@ -39,6 +46,26 @@ export const CosmosProvider = ({
       }
     })();
   }, [currentWallet, isLoading]);
+
+  useEffect(() => {
+    (async function getChainInfos() {
+      const supportedChainIds =
+        walletOptions?.[CosmosWallet.Keplr]?.supportedChainIds ?? [];
+      if (supportedChainIds.length > 0 && provider) {
+        const allChainInfos: Promise<
+          Record<string, { signer: OfflineSigner; accounts: AccountData[] }>
+        > = supportedChainIds.reduce(async (acc, cur) => {
+          const signer = provider.getOfflineSigner(cur);
+          const accounts = await signer.getAccounts();
+          const chainInfo = { [cur]: { signer, accounts } };
+          return { ...acc, chainInfo };
+        }, Promise.resolve({}));
+
+        const chainInfos = await allChainInfos;
+        setWalletState({ chainInfos });
+      }
+    })();
+  }, [walletOptions?.[CosmosWallet.Keplr]?.supportedChainIds, provider]);
 
   useEffect(() => {
     if (currentWallet === CosmosWallet.Keplr) {
