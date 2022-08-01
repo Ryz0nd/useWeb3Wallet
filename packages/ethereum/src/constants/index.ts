@@ -1,1 +1,2 @@
-export { SupportedWallet } from "./supportedWallet";
+export { EthereumWallet } from "./ethereumWallet";
+export type { EthereumWalletType } from "./ethereumWallet";

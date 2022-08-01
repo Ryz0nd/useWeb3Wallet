@@ -1,6 +1,9 @@
-import { useProviderStore } from "../store";
+import { EthereumWallet } from "../constants";
+import { useProviderStore } from "../stores";
 
 export const connectToMetamask = async () => {
+  const initializeStore = useProviderStore.getState().initializeStore;
+
   if (typeof window !== "undefined") {
     if (window.ethereum !== undefined) {
       try {
@@ -8,11 +11,12 @@ export const connectToMetamask = async () => {
           method: "eth_requestAccounts",
         })) as unknown as string[];
         useProviderStore.setState({
-          currentWallet: "MetaMask",
+          currentWallet: EthereumWallet.MetaMask,
           account,
           provider: window.ethereum,
         });
       } catch (error) {
+        initializeStore();
         console.error(error);
       }
     } else {

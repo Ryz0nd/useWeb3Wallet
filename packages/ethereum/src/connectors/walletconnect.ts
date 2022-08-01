@@ -1,5 +1,6 @@
 import WalletConnectProvider from "@walletconnect/web3-provider";
-import { useWalletConnectStore, useProviderStore } from "../store";
+import { EthereumWallet } from "../constants";
+import { useWalletConnectStore, useProviderStore } from "../stores";
 import { isWalletConnectProvider } from "../utils";
 
 let shouldForceModalOpen: boolean = false;
@@ -71,7 +72,7 @@ export const connectToWalletConnect = async () => {
       try {
         const accounts = await enable(provider);
         useProviderStore.setState({
-          currentWallet: "WalletConnect",
+          currentWallet: EthereumWallet.WalletConnect,
           account: accounts[0],
           provider,
         });

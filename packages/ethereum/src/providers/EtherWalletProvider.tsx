@@ -1,15 +1,15 @@
 import WalletConnectProvider from "@walletconnect/web3-provider";
 import { ReactNode, useEffect } from "react";
-import { SupportedWallet } from "../constants";
-import { useProviderStore, useWalletConnectStore } from "../store";
-import { connectTo } from "../utils";
+import { connectTo } from "../connectors";
+import { EthereumWallet } from "../constants";
+import { useProviderStore, useWalletConnectStore } from "../stores";
 
-export type WalletOptions = {
+export type EtherWalletOptions = {
   walletConnectProvider?: WalletConnectProvider;
 };
 
 type EtherWalletProviderProps = {
-  walletOptions?: WalletOptions;
+  walletOptions?: EtherWalletOptions;
   children: ReactNode;
 };
 
@@ -44,10 +44,10 @@ export const EtherWalletProvider = ({
     (async function isVisitAgain() {
       if (currentWallet !== undefined && isLoading) {
         switch (currentWallet) {
-          case SupportedWallet.MetaMask:
+          case EthereumWallet.MetaMask:
             setWalletState({ provider: window.ethereum });
             break;
-          case SupportedWallet.WalletConnect:
+          case EthereumWallet.WalletConnect:
             setWalletState({ provider: walletConnectProvider });
             break;
           default:

@@ -1,11 +1,11 @@
 import {
   useEtherWallet,
   EtherWalletProvider,
-  WalletOptions,
+  EtherWalletOptions,
 } from "@use-web3wallet/ethereum";
 import WalletConnectProvider from "@walletconnect/web3-provider";
 
-const walletOptions: WalletOptions = {
+const walletOptions: EtherWalletOptions = {
   walletConnectProvider: new WalletConnectProvider({
     chainId: 1,
     infuraId: "",

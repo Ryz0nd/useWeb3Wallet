@@ -1,24 +1,32 @@
-import type { MetaMaskInpageProvider } from "@metamask/providers";
-import type WalletConnectProvider from "@walletconnect/web3-provider";
-import create from "zustand";
+import create, {
+  type Mutate,
+  type StoreApi,
+  type UseBoundStore,
+} from "zustand";
 import { persist } from "zustand/middleware";
+import type { Keplr } from "@keplr-wallet/types";
+import type { AccountData, OfflineSigner } from "@cosmjs/proto-signing";
 
-export type ProviderState =
+import { CosmosWallet } from "../constants";
+import { CosmosWalletOptions } from "../providers";
+
+type ProviderState = {
+  walletOptions: CosmosWalletOptions;
+} & (
   | {
-      currentWallet: "MetaMask";
-      account: string;
-      provider: MetaMaskInpageProvider;
-    }
-  | {
-      currentWallet: "WalletConnect";
-      account: string;
-      provider: WalletConnectProvider;
+      currentWallet: typeof CosmosWallet.Keplr;
+      chainInfos: Record<
+        string,
+        { accounts: AccountData[]; signer: OfflineSigner }
+      >;
+      provider: Keplr;
     }
   | {
       currentWallet: undefined;
-      account: undefined;
+      chainInfos: undefined;
       provider: undefined;
-    };
+    }
+);
 
 type ProviderHelper = {
   isLoading: boolean;
@@ -27,28 +35,33 @@ type ProviderHelper = {
   setWalletState: (state: Partial<ProviderState>) => void;
 };
 
-export const useProviderStore = create<ProviderState & ProviderHelper>()(
+export type ProviderStore = ProviderState & ProviderHelper;
+
+export const useProviderStore: UseBoundStore<
+  Mutate<StoreApi<ProviderStore>, []>
+> = create<ProviderStore>()(
   persist(
     (set) => ({
       isLoading: true,
       currentWallet: undefined,
-      account: undefined,
+      walletOptions: {},
+      chainInfos: undefined,
       provider: undefined,
       initializeStore: () =>
         set({
           currentWallet: undefined,
-          account: undefined,
           provider: undefined,
+          chainInfos: undefined,
         }),
       setLoading: (state) => set({ isLoading: state }),
       setWalletState: (state) => set({ ...state }),
     }),
     {
-      name: "ether_wallet",
+      name: "cosmos_wallet",
       partialize: (state) =>
         Object.fromEntries(
           Object.entries(state).filter(([key]) =>
-            ["currentWallet", "account"].includes(key)
+            ["currentWallet"].includes(key)
           )
         ),
       getStorage: () => ({
