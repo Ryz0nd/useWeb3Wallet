@@ -1,8 +1,19 @@
 import { connectTo } from "../connectors";
 import { useProviderStore } from "../stores";
+import { ProviderStore } from "../stores/providerStore";
 import { isWalletConnectProvider } from "../utils";
 
-export const useEtherWallet = () => {
+type UseEtherWallet = {
+  connectTo: typeof connectTo;
+  disconnect: () => void;
+  chainId: number | undefined;
+  isWalletConnected: boolean;
+} & Pick<
+  ProviderStore,
+  "isLoading" | "account" | "provider" | "isLoading" | "currentWallet"
+>;
+
+export const useEtherWallet = (): UseEtherWallet => {
   const currentWallet = useProviderStore((state) => state.currentWallet);
   const account = useProviderStore((state) => state.account);
   const provider = useProviderStore((state) => state.provider);
@@ -16,10 +27,10 @@ export const useEtherWallet = () => {
     return undefined;
   };
 
-  const disconnect = async () => {
+  const disconnect = () => {
     initializeStore();
     if (isWalletConnectProvider(provider, currentWallet)) {
-      await provider.disconnect();
+      provider.disconnect();
     }
   };
 

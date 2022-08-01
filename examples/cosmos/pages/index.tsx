@@ -4,7 +4,7 @@ import {
   CosmosWalletOptions,
 } from "@use-web3wallet/cosmos";
 import { CHAIN } from "../chain";
-
+  
 const walletOptions: CosmosWalletOptions = {
   Keplr: {
     supportedChainIds: [CHAIN["Cosmos Hub"], CHAIN["Osmosis"], CHAIN["Juno"]],

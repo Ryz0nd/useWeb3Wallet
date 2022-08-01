@@ -1,5 +1,4 @@
-import { CosmosWallet } from "../constants";
-import type { CosmosWalletType } from "../constants";
+import { CosmosWallet, type CosmosWalletType } from "../constants";
 
 import { connectToKeplr } from "./keplr";
 

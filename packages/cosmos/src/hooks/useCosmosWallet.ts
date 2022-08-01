@@ -1,7 +1,16 @@
 import { connectTo } from "../connectors";
 import { useProviderStore } from "../stores";
+import { ProviderStore } from "../stores/providerStore";
 
-export const useCosmosWallet = () => {
+type UseCosmosWallet = {
+  connectTo: typeof connectTo;
+  disconnect: () => void;
+  isWalletConnected: boolean;
+} & Pick<
+  ProviderStore,
+  "isLoading" | "chainInfos" | "provider" | "currentWallet"
+>;
+export const useCosmosWallet = (): UseCosmosWallet => {
   const currentWallet = useProviderStore((state) => state.currentWallet);
   const chainInfos = useProviderStore((state) => state.chainInfos);
   const provider = useProviderStore((state) => state.provider);

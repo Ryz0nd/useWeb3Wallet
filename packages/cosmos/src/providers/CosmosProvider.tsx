@@ -1,5 +1,4 @@
-import { useCallback, useEffect } from "react";
-import type { ReactNode } from "react";
+import { useCallback, useEffect, type ReactNode } from "react";
 import { connectTo } from "../connectors";
 import { CosmosWallet } from "../constants";
 import { useProviderStore } from "../stores";

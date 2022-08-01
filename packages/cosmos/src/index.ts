@@ -1,3 +1,2 @@
 export { useCosmosWallet } from "./hooks";
-export { CosmosProvider } from "./providers";
-export type { CosmosWalletOptions } from "./providers";
+export { CosmosProvider, type CosmosWalletOptions } from "./providers";

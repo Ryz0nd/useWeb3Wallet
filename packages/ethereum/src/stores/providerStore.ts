@@ -28,7 +28,9 @@ type ProviderHelper = {
   setWalletState: (state: Partial<ProviderState>) => void;
 };
 
-export const useProviderStore = create<ProviderState & ProviderHelper>()(
+export type ProviderStore = ProviderState & ProviderHelper;
+
+export const useProviderStore = create<ProviderStore>()(
   persist(
     (set) => ({
       isLoading: true,

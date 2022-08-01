@@ -1,2 +1,1 @@
-export { CosmosProvider } from "./CosmosProvider";
-export type { CosmosWalletOptions } from "./CosmosProvider";
+export { CosmosProvider, type CosmosWalletOptions } from "./CosmosProvider";

@@ -1,4 +1,8 @@
-import create from "zustand";
+import create, {
+  type Mutate,
+  type StoreApi,
+  type UseBoundStore,
+} from "zustand";
 import { persist } from "zustand/middleware";
 import type { Keplr } from "@keplr-wallet/types";
 import type { AccountData, OfflineSigner } from "@cosmjs/proto-signing";
@@ -31,7 +35,11 @@ type ProviderHelper = {
   setWalletState: (state: Partial<ProviderState>) => void;
 };
 
-export const useProviderStore = create<ProviderState & ProviderHelper>()(
+export type ProviderStore = ProviderState & ProviderHelper;
+
+export const useProviderStore: UseBoundStore<
+  Mutate<StoreApi<ProviderStore>, []>
+> = create<ProviderStore>()(
   persist(
     (set) => ({
       isLoading: true,

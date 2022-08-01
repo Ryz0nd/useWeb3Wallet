@@ -1,2 +1,1 @@
-export { CosmosWallet } from "./cosmosWallet";
-export type { CosmosWalletType } from "./cosmosWallet";
+export { CosmosWallet, type CosmosWalletType } from "./cosmosWallet";
