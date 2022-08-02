@@ -1,22 +1,24 @@
-# useWeb3Wallet
+# useEtherWallet
 
 ### Usage
-1. Install `use-web3wallet`
+1. Install `@use-web3wallet/ethereum`
 ```
-yarn add use-web3wallet
-
-npm install --save use-web3wallet
+yarn add @use-web3wallet/ethereum
+// or
+npm install --save @use-web3wallet/ethereum
 ```
 
 
 2. Add `EtherWalletProvider` to your DApp
 ```typescript
-import { EtherWalletProvider } from "use-web3wallet";
-import WalletConnectProvider from "@walletconnect/web3-provider"; // optional 
+import { EtherWalletProvider } from "@use-web3wallet/ethereum";
 
+// If you don't use a WalletConnect, you don't need to import it.
+import WalletConnectProvider from "@walletconnect/web3-provider"; 
 
 const walletOptions = {
-  walletConnectProvider: new WalletConnectProvider({ // optional
+  // Similarly, if you don't use a WalletConnect, please ignore this option
+  walletConnectProvider: new WalletConnectProvider({
     // https://docs.walletconnect.com/quick-start/dapps/web3-provider#required
   }),
 };
@@ -25,13 +27,15 @@ const Index = () => {
   return(
     <EtherWalletProvider walletOptions={walletOptions}>
       ...
-    </EtherWalletProvider />
+    </EtherWalletProvider>
   );
 }
 ```
 
-3. Use `useEtherWallet` hook
+3. Use a `useEtherWallet` hook
 ```typescript
+import { useEtherWallet } from "@use-web3wallet/ethereum";
+
 const Page = () => {
   const {
     connectTo,
@@ -53,7 +57,8 @@ const Page = () => {
               <button type="button" onClick={() => connectTo("MetaMask")}>
                 MetaMask
               </button>
-              <button type="button" onClick={() => connectTo("WalletConnect")}> // Set walletConnectProvider in walletOptions
+
+              <button type="button" onClick={() => connectTo("WalletConnect")}>
                 Wallet Connect
               </button>
             </>
@@ -67,5 +72,4 @@ const Page = () => {
     </>
   );
 };
-
 ```
