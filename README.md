@@ -7,7 +7,7 @@ Our goal is to support all chains and we are currently supporting Cosmos and Eth
 
 
 | Package | Version | Bundle Size |
-|:---:|:---:|:---:|
+|---|---|---|
 | [`@use-web3wallet/cosmos`](packages/cosmos) | [![npm](https://img.shields.io/npm/v/@use-web3wallet/cosmos.svg)](https://www.npmjs.com/package/@use-web3wallet/cosmos) | [![minzip](https://img.shields.io/bundlephobia/minzip/@use-web3wallet/cosmos.svg)](https://bundlephobia.com/result?p=@use-web3wallet/cosmos) |
 | [`@use-web3wallet/ethereum`](packages/ethereum) | [![npm](https://img.shields.io/npm/v/@use-web3wallet/ethereum.svg)](https://www.npmjs.com/package/@use-web3wallet/ethereum) | [![minzip](https://img.shields.io/bundlephobia/minzip/@use-web3wallet/ethereum.svg)](https://bundlephobia.com/result?p=@use-web3wallet/ethereum) |
 | @use-web3wallet/solana | 🚧 Under development |  |
