@@ -1,6 +1,6 @@
 # useWeb3Wallet
 
-useWeb3Wallet is an easy-to-use wallet provider hook.
+useWeb3Wallet is an easy-to-use wallet provider hook.  
 Our goal is to support all chains and we are currently supporting Cosmos and Ethereum.
 
 ## Packages
